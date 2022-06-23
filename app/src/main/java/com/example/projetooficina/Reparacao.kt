@@ -3,11 +3,13 @@ package com.example.projetooficina
 import android.content.ContentValues
 import android.database.Cursor
 
+
 class Reparacao (var Matricula : String,
                  var TipoReparacao: String,
                  var Descricao: String,
                  var IDFuncionario: String,
                  var id: Long =-1) {
+
 
 
     fun toContentValues() : ContentValues {
@@ -22,21 +24,21 @@ class Reparacao (var Matricula : String,
     }
 
     companion object {
-        fun fromCursor(cursor: Cursor): Carros {
+        fun fromCursor(cursor: Cursor): Reparacao{
 
-            val posMatricula = cursor.getColumnIndex(TabelaBDCarros.MATRICULA)
-            val posMarca = cursor.getColumnIndex(TabelaBDCarros.MARCA)
-            val posModelo= cursor.getColumnIndex(TabelaBDCarros.MODELO)
-            val posCor = cursor.getColumnIndex(TabelaBDCarros.COR)
+            val posMatricula = cursor.getColumnIndex(TabelaBDReparacao.MATRICULA)
+            val posTipoReparacao = cursor.getColumnIndex(TabelaBDReparacao.TIPOREPARACAO)
+            val posDescricao= cursor.getColumnIndex(TabelaBDReparacao.DESCRICAO)
+            val posIDFuncionario = cursor.getColumnIndex(TabelaBDReparacao.IDFUNCIONARIO)
 
 
 
             val Matricula = cursor.getString(posMatricula)
-            val Marca = cursor.getString(posMarca)
-            val MODELO = cursor.getString(posModelo)
-            val COR = cursor.getString(posCor)
+            val TipoReparacao = cursor.getString(posTipoReparacao)
+            val Descricao = cursor.getString(posDescricao)
+            val IDFuncionario = cursor.getString(posIDFuncionario)
 
-            return Carros(Matricula, Marca, MODELO, COR)
+            return Reparacao(Matricula, TipoReparacao, Descricao,IDFuncionario )
         }
     }
 }
