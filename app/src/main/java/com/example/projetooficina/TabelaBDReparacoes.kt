@@ -1,22 +1,23 @@
 package com.example.projetooficina
 
-
-import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
 
+class TabelBDReparacoes(db: SQLiteDatabase) :TabelaBD(db, MATRICULA){
 
-class TabelaBDReparacoes(val db: SQLiteDatabase) {
-    fun cria(){
-        db.execSQL("CREATE TABLE $ID_REPARACAO (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $DATA DATE NOT NULL, $TIPO TEXT NOT NULL, $DESCRICAO TEXT NOT NULL, $MATRICULA TEXT NOT NULL, $CAMPO_ID_FUNCIONARIO INTEGER NOT NULL)")
 
-    }
-    companion object{
-        const val ID_REPARACAO = "id reparacao"
-        const val DATA = "data de rececao"
-        const val TIPO = "tipo de reparacao"
+
+    override fun cria() {
+        db.execSQL("CREATE TABLE $MATRICULA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $TIPOREPARACAO TEXT NOT NULL, $DESCRICAO TEXT NOT NULL,  FOREIGN KEY ($IDFUNCIONARIO) REFERENCES ${TabelaBDFuncionario.NOME}(${BaseColumns._ID}) ON DELETE RESTRICT)")
+        }
+
+    companion object {
+        val MATRICULA = "matricula"
+        const val TIPOREPARACAO = "tipoReparacao"
         const val DESCRICAO = "descricao"
-        const val MATRICULA = "matricula"
-        const val CAMPO_ID_FUNCIONARIO ="id funcionario"
+        const val IDFUNCIONARIO = "funcionarioId"
+
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID,MATRICULA, TIPOREPARACAO, DESCRICAO, IDFUNCIONARIO)
     }
+
 }
