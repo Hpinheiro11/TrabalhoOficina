@@ -1,6 +1,7 @@
 package com.example.projetooficina
 
 import android.database.sqlite.SQLiteDatabase
+import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -102,6 +103,28 @@ class BaseDadosTest {
             Matricula.toContentValues(),
             "${TabelaBDCarros.CAMPO_ID_REPARACAO}=?",
             arrayOf("${Matricula.id}")
+        )
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueAlterarFuncionario() {
+        val db = getWritableDatabase()
+
+        val Funcionario = Funcionario("Rute Pinheiro")
+        insereFuncionarios(db, Funcionario)
+
+
+
+
+
+        val registosAlterados = TabelaBDFuncionario(db).update(
+            Funcionario.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${Funcionario.id}")
         )
 
         assertEquals(1, registosAlterados)
