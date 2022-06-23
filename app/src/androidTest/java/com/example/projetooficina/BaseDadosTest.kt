@@ -45,4 +45,10 @@ class BaseDadosTest {
     }
 
 
+    @Before
+    fun apagaBaseDados() {
+        appContext().deleteDatabase(TabelaBDOpenHelper.NOME)
+    }
+
+
 }
