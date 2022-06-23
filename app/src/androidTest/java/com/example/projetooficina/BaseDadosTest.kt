@@ -50,5 +50,24 @@ class BaseDadosTest {
         appContext().deleteDatabase(TabelaBDOpenHelper.NOME)
     }
 
+    @Test
+    fun consegueAbrirBaseDados() {
+        val openHelper = TabelaBDOpenHelper(appContext())
+        val db = openHelper.readableDatabase
+
+        assertTrue(db.isOpen)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueInserirCarros() {
+        val db = getWritableDatabase()
+
+        insereCarros(db, Carros("22BW11","BMW","Serie1","Branco"))
+
+        db.close()
+    }
+
 
 }
