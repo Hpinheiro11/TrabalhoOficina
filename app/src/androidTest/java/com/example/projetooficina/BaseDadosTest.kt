@@ -90,6 +90,25 @@ class BaseDadosTest {
     }
 
     @Test
+    fun consegueAlterarCarros() {
+        val db = getWritableDatabase()
+
+
+        val Matricula = Carros("34RT21","Opel", " Astra", "Amarelo")
+        insereCarros(db, Matricula)
+
+        Matricula.Matricula = "BM1456"
+        val registosAlterados = TabelaBDCarros(db).update(
+            Matricula.toContentValues(),
+            "${TabelaBDCarros.CAMPO_ID_REPARACAO}=?",
+            arrayOf("${Matricula.id}")
+        )
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
+
 
 
 }
