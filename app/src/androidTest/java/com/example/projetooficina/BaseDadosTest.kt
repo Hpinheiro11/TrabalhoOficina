@@ -81,7 +81,15 @@ class BaseDadosTest {
 
         db.close()
     }
+    fun consegueInserirFuncionarios() {
+        val db = getWritableDatabase()
 
+        insereFuncionarios(db, Funcionario("Hugo Pinheiro"))
+
+        db.close()
+    }
+
+    @Test
 
 
 }
