@@ -32,5 +32,11 @@ class BaseDadosTest {
         assertNotEquals(-1, Carros.id)
     }
 
+    private fun insereReparacao(db: SQLiteDatabase, Reparacao: Reparacao) {
+        Reparacao.id = TabelaBDReparacao(db).insert(Reparacao.toContentValues())
+
+        assertNotEquals(-1, Reparacao.id)
+    }
+
 
 }
