@@ -69,5 +69,18 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueInserirReparacao() {
+        val db = getWritableDatabase()
+
+        val Carros = Carros("HP1212"," Mercedes","ClasseA","Vermelho")
+        insereCarros(db, Carros)
+
+        val Reparacao = Reparacao("HP1212", "Chaparia", " Pequena Batidela no Para-Choques","1")
+        insereReparacao(db, Reparacao)
+
+        db.close()
+    }
+
 
 }
