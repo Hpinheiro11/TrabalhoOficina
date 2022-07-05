@@ -16,5 +16,7 @@ class TabelaBDCarros(override val db: SQLiteDatabase): TabelaBD(db, MATRICULA) {
         const val COR = "cor"
         const val HISTORICO = "historico"
         const val CAMPO_ID_REPARACAO = "id_reparacao"
+
+        val TODAS_COLUNAS= arrayOf(MATRICULA, MARCA)
     }
 }

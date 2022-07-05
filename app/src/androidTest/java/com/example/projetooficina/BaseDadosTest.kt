@@ -165,6 +165,32 @@ class BaseDadosTest {
 
         db.close()
     }
+    @Test
+
+    fun consegueLerCarros() {
+        val db = getWritableDatabase()
+
+        val Matricula = Carros("12AC65","BMW","B7","Amarelo")
+        insereCarros(db, Matricula)
+
+        val cursor = TabelaBDCarros(db).query(
+            TabelaBDCarros.TODAS_COLUNAS,
+            "${TabelaBDCarros.MATRICULA}=?",
+           arrayOf("${Matricula.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val CarrosBD = Carros.fromCursor(cursor)
+        assertEquals(Carros, CarrosBD)
+
+        db.close()
+    }
+
 
 
 
