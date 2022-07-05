@@ -149,6 +149,23 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueEliminarReparacao() {
+        val db = getWritableDatabase()
+
+        val reparacao = Reparacao("BM1356","Chaparia","Guarda-Lamas homologado","1")
+        insereReparacao(db, reparacao)
+
+        val registosEliminados = TabelaBDReparacao(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${Reparacao}")
+        )
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
 
 
 }
